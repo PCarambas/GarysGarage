@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\pcara\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\pcara\\.nuget\\packages"
+    ]
+  }
+}
