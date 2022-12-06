@@ -6,9 +6,7 @@ namespace Garage
         public string MainColor { get; set; }
         public int MaximumOccupancy { get; set; }
 
-        public double FuelCapacity { get; set; }
 
-        public double BatteryKWh { get; set; }
 
         public virtual void Drive()
         {
@@ -31,4 +29,7 @@ namespace Garage
 
         }
     }
+
+
+
 }

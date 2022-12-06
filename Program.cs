@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Garage
 {
@@ -6,49 +7,57 @@ namespace Garage
     {
         static void Main(string[] args)
         {
-            Zero fxs = new Zero()
-            {
-                MainColor = "Purple",
-                MaximumOccupancy = 2,
-                BatteryKWh = 20.25
+            Zero fxs = new Zero();
+            Zero fx = new Zero();
+            Tesla modelS = new Tesla();
+
+
+            List<IElectricVehicle> electricVehicles = new List<IElectricVehicle>() {
+                fx, fxs, modelS
             };
 
-            Tesla modelS = new Tesla()
+            Console.WriteLine("Electric Vehicles");
+            foreach (IElectricVehicle ev in electricVehicles)
             {
-                MainColor = "Black",
-                MaximumOccupancy = 4,
-                BatteryKWh = 20.25
+                Console.WriteLine($"{ev.CurrentChargePercentage}");
+            }
+
+            foreach (IElectricVehicle ev in electricVehicles)
+            {
+                // This should charge the vehicle to 100%
+                ev.ChargeBattery();
+            }
+
+            foreach (IElectricVehicle ev in electricVehicles)
+            {
+                Console.WriteLine($"{ev.CurrentChargePercentage}");
+            }
+
+            /***********************************************/
+
+            Ram ram = new Ram();
+            Cessna cessna150 = new Cessna();
+
+            List<IGasVehicle> gasVehicles = new List<IGasVehicle>() {
+                ram, cessna150
             };
 
-            Cessna mx410 = new Cessna()
+            Console.WriteLine("Gas Vehicles");
+            foreach (IGasVehicle gv in gasVehicles)
             {
-                MainColor = "White",
-                MaximumOccupancy = 4,
-                FuelCapacity = 200
-            };
+                Console.WriteLine($"{gv.CurrentTankPercentage}");
+            }
 
-            Ram HD1500 = new Ram()
+            foreach (IGasVehicle gv in gasVehicles)
             {
-                MainColor = "Silver",
-                MaximumOccupancy = 4,
-                FuelCapacity = 50
-            };
+                // This should completely refuel the gas tank
+                gv.RefuelTank();
+            }
 
-            fxs.Drive();
-            modelS.Drive();
-            mx410.Drive();
-            HD1500.Drive();
-            Console.WriteLine();
-            fxs.Turn("left");
-            modelS.Turn("right");
-            mx410.Turn("left");
-            HD1500.Turn("right");
-            Console.WriteLine();
-            fxs.Stop();
-            modelS.Stop();
-            mx410.Stop();
-            HD1500.Stop();
-
+            foreach (IGasVehicle gv in gasVehicles)
+            {
+                Console.WriteLine($"{gv.CurrentTankPercentage}");
+            }
         }
     }
 }
